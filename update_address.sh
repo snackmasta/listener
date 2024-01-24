@@ -1,4 +1,4 @@
-#t !/bin/bash
+#!/bin/bash
 
 # Read the new IP address
 new_ip=$(host 0.tcp.ap.ngrok.io | grep -oP 'has address \K[^ ]+')
