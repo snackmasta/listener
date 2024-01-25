@@ -1,1 +1,0 @@
-cat data_old.json | jq '.website.port = 2004' > data.json

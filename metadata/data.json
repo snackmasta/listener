@@ -15,14 +15,6 @@
     {
       "id": "client3",
       "state": 0.2
-    },
-    {
-      "id": "new_client",
-      "state": 0.9
-    },
-    {
-      "id": "new_client2",
-      "state": 0.9
     }
   ]
 }
