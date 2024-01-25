@@ -1,1 +1,0 @@
-jq '.website.ip="11.12.35" | .website.port=2002' data_old.json > data.json; sleep 1; cat data.json > data_old.json
