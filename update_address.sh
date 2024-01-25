@@ -10,11 +10,11 @@ new_port=$(curl localhost:4040/api/tunnels | jq '.tunnels[0].public_url'| awk -F
 #json_data="{\"ip_address\":\"$new_ip\",\"port\":\"$new_port\",\"id\":\"$id\"}"
 
 #jquery new ip and port 
-jq '.website == [{"ip": "$new_ip", "port": "$new_port"}]' ./metadata/data_old.json > ./metadata/data.json
-sleep 1 
+jq '.website == [{"ip": "$new_ip", "port": "$new_port"}]' ./metadata/data_old.json > ./metadata/data.json > data_old.json
+#sleep 1 
 
 #Echo the JSON string to data.json
-cat ./metadata/data.json > ./metadata/data_old.json
+#cat ./metadata/data.json > ./metadata/data_old.json
 
 git add .
 git commit -m data 
