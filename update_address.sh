@@ -10,7 +10,7 @@ new_port=$(curl localhost:4040/api/tunnels | jq '.tunnels[0].public_url'| awk -F
 #json_data="{\"ip_address\":\"$new_ip\",\"port\":\"$new_port\",\"id\":\"$id\"}"
 
 #jquery new ip and port 
-jq '.website.ip="$new_ip" | .website.port=$new_port' ./metadata/data_old.json > ./metadata/data.json
+jq '.website.ip="$(new_ip)" | .website.port=$(new_port)' ./metadata/data_old.json > ./metadata/data.json
 sleep 1
 cat ./metadata/data.json > ./metadata/data_old.json
 #sleep 1 
