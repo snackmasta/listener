@@ -1,7 +1,7 @@
 {
   "website": {
-    "ip": "your_website_ip_here",
-    "port": 80
+    "ip": "18.136.148.247",
+    "port": 17520
   },
   "clients": {
     "client_1": {
