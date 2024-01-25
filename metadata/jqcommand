@@ -1,2 +1,0 @@
-#!bin/bash
-jq '.website.ip="11.22.33" | .website.port=2002' data_old.json > data.json

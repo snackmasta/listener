@@ -3,18 +3,5 @@
     "ip": "your_website_ip_here",
     "port": 80
   },
-  "clients": [
-    {
-      "id": "client1",
-      "state": 0.8
-    },
-    {
-      "id": "client2",
-      "state": 0.5
-    },
-    {
-      "id": "client3",
-      "state": 0.2
-    }
-  ]
-}
+  "clients": {}
+
