@@ -5,8 +5,9 @@
   },
   "clients": {
     "client_1": {
-      "id": "new_client",
-      "state": 0.9
+      "num": 1,
+      "id": "computer_1",
+      "state": 0
     }
   }
 }
