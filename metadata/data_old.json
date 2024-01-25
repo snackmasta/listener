@@ -8,6 +8,11 @@
       "num": 1,
       "id": "computer_1",
       "state": 0
+    },
+    "client_2": {
+      "num": 2,
+      "id": "computer_2",
+      "state": 0
     }
   }
 }
