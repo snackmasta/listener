@@ -12,7 +12,7 @@
     "client_2": {
       "num": 2,
       "id": "computer_2",
-      "state": 1
+      "state": 0
     }
   }
 }
