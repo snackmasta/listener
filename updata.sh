@@ -18,8 +18,10 @@ sleep 1
 cp "$new_data" "$old_data"
 
 # Update GitHub
-git add .
-git commit -m "Update data.json with IP: $new_ip and Port: $new_port"
-git push
+#git add .
+#git commit -m "Update data.json with IP: $new_ip and Port: $new_port"
+#git push
+
+curl -X PUT -d '{"port": '$new_port', "ip": "'$new_ip'"}' 'https://curronebox-default-rtdb.asia-southeast1.firebasedatabase.app/address.json' > /dev/null
 
 echo -e "\e[34mUpdated data.json with IP: $new_ip and Port: $new_port\e[0m"
