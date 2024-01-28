@@ -1,0 +1,19 @@
+{
+  "address": {
+    "ip": "18.141.129.246",
+    "port": 19738
+  },
+
+  "clients": {
+    "client_1": {
+      "id": "computer_1",
+      "num": 1,
+      "state": 0
+    },
+    "client_2": {
+      "id": "computer_2",
+      "num": 2,
+      "state": 0
+    }
+  }
+}
