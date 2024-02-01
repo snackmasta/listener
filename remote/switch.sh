@@ -1,7 +1,11 @@
 read -p "Enter the ID of the client: " id
 read -p "Enter the state of the client: " state
 
-client_URL="https://curronebox-default-rtdb.asia-southeast1.firebasedatabase.app/client_$id/state.json"
-curl -X PUT -d $state "$client_URL" > /dev/null
+count=$((id - 1))
 
-#curl -X PUT -d '{"id": "computer_1","MAC": 1,"state": '$state'}' "$client_URL" > /dev/null
+# Get client the Parent Value of the client as an array
+MAC=($(curl -s https://curronebox-default-rtdb.asia-southeast1.firebasedatabase.app/clients.json | jq -r 'keys[]')) 
+echo ${MAC[$count]}
+
+client_URL="https://curronebox-default-rtdb.asia-southeast1.firebasedatabase.app/clients/${MAC[$count]}/state.json"
+curl -s -X PUT -d $state "$client_URL" > /dev/null
