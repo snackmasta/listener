@@ -7,14 +7,20 @@ count=$(echo "$json_data" | jq 'length')
 for (( i = 0; i <= $count-1; i++ )); do
   # echo $i
   # echo "$json_data" | jq -r 'keys['$i']'
-  current_time=($(date "+%H") $(date "+%M"))
+  current_time=($(date "+%H"| sed 's/^0*//') $(date "+%M"| sed 's/^0*//'))
   mac_address=$(echo "$json_data" | jq -r 'keys['$i']')
   time_value=$(echo "$json_data" | jq -r '.["'$mac_address'"].LastSeen' | cut -d ' ' -f1)
-  client_hours=$(echo "$time_value" | cut -d':' -f1 | sed 's/^0*//')
-  client_minutes=$(echo "$time_value" | cut -d':' -f2 | sed 's/^0*//')
+  client_hours=$((10#$(echo "$time_value" | cut -d':' -f1)))
+  client_minutes=$((10#$(echo "$time_value" | cut -d':' -f2)))
+  # echo $client_hours 
+  # echo $client_minutes 
+  # echo ${current_time[0]}
+  # echo ${current_time[1]}
   compare_time=$(( (client_hours - ${current_time[0]}) * 60 + client_minutes - ${current_time[1]} ))
   # echo $compare_time
   if [ "$compare_time" -ge -1 ] && [ "$compare_time" -le 1 ]; then
-    echo "$mac_address is Online"
+    brand=$(curl -s "$url/clients/$mac_address/recon/Brand.json")
+    username=$(curl -s "$url/clients/$mac_address/recon/User.json")
+    echo "$username $brand is Online"
   fi
 done
