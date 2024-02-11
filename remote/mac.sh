@@ -1,4 +1,6 @@
 #!/bin/bash
+while true; do
+
 url="https://curronebox-default-rtdb.asia-southeast1.firebasedatabase.app"
 json_data=$(curl -s "$url/Online.json")
 count=$(echo "$json_data" | jq 'length')
@@ -22,7 +24,7 @@ for (( i = 0; i <= $count-1; i++ )); do
   if [ "$compare_time" -ge -1 ] && [ "$compare_time" -le 1 ]; then
     brand=$(curl -s "$url/clients/$mac_address/recon/Brand.json")
     username=$(curl -s "$url/clients/$mac_address/recon/User.json")
-    echo "$username $brand is Online"
+    echo "$(date) $username $brand" >> /data/data/com.termux/files/home/root/hengkel/online-log.txt
     if [[ ! $(termux-notification-list | jq -e '.[].tag | select(. == "client-'$i'")') ]]; then
     # Execute your command here
     termux-media-player play /data/data/com.termux/files/home/storage/shared/Notifications/rikka.mp3>    /dev/null 
@@ -32,3 +34,4 @@ for (( i = 0; i <= $count-1; i++ )); do
     termux-notification-remove client-$i
   fi
 done
+done &
