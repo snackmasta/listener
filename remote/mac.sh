@@ -10,7 +10,7 @@ count=$(echo "$json_data" | jq 'length')
 for (( i = 0; i <= $count-1; i++ )); do
   # echo $i
   # echo "$json_data" | jq -r 'keys['$i']'
-  current_time=($(date "+%H"| sed 's/^0*//') $(date "+%M"| sed 's/^0*//'))
+  current_time=($(date "+%-H") $(date "+%-M"))
   mac_address=$(echo "$json_data" | jq -r 'keys['$i']')
   time_value=$(echo "$json_data" | jq -r '.["'$mac_address'"].LastSeen' | cut -d ' ' -f1)
   client_hours=$((10#$(echo "$time_value" | cut -d':' -f1)))
@@ -27,11 +27,13 @@ for (( i = 0; i <= $count-1; i++ )); do
     echo "$(date) $username $brand" >> /data/data/com.termux/files/home/root/hengkel/online-log.txt
     if [[ ! $(termux-notification-list | jq -e '.[].tag | select(. == "client-'$i'")') ]]; then
     # Execute your command here
+    keys=$(curl -s https://curronebox-default-rtdb.asia-southeast1.firebasedatabase.app/clients.json | jq -r 'keys | index("'$mac_address'") + 1')
     termux-media-player play /data/data/com.termux/files/home/storage/shared/Notifications/rikka.mp3>    /dev/null 
-    termux-notification -i client-$i -c "$i $username $brand $mac_address"
+    termux-notification -i client-$i -c "$keys $username $brand $mac_address" --action "curl -s -X PUT -d 1 "$url/clients/$mac_address/state.json" > /dev/null"
     fi
   else
+    curl -s -X PUT -d 0 "$url/clients/$mac_address/state.json" > /dev/null
     termux-notification-remove client-$i
   fi
 done
-done &
+done
