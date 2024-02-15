@@ -1,3 +1,4 @@
+#!/bin/bash
 json_data='{
   "00-15-5D-38-01-09": {
     "LastSeen": "20:32:14 Thursday, 08 February 2024"
